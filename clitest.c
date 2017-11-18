@@ -3,15 +3,35 @@
 #include <string.h>
 #include <stdlib.h>
 #include "listADTgen.h"
+#include "stocks.h"
+int compareID(void* num1, void* num2){
 
-int compareTo(void* num1, void* num2){
 }
+int compareStock(void* s1, void* s2) {
 
+}
 int main() {
 	FILE* infile = fopen("clients.txt", "r");
-	ClientProf temp = createCli(infile);
-	printf("%d\n", sizeof(ClientProf));
-	ListType cliList = create(24, compareTo);
+	FILE* inStock = fopen("stocks.csv", "r");
+
+	char buffer[200];	
+	fscanf(inStock, "%[^,],", buffer);
+	fscanf(inStock, "%[^,],", buffer);
+	fscanf(inStock, "%[^,],", buffer);
+
+	ClientProf temp = createCli(infile);	
+	Stock tempStock = createStock(inStock);
+
+	ListType stockList = create(sizeof(double) + 6, compareStock);
+	ListType cliList = create(24, compareID);
+	
+	while (!feof(inStock)) {
+		printf("STILL STOCKING\n");	
+		push(stockList, tempStock);
+		tempStock = createStock(inStock);
+		//toStringCli(temp);
+	}
+	printl(stockList, printStock);
 	while (!feof(infile)) {
 		printf("STILL READING\n");
 		
