@@ -15,22 +15,20 @@ int main() {
 	FILE* inStock = fopen("stocks.csv", "r");
 
 	char buffer[200];	
-	fscanf(inStock, "%[^,],", buffer);
-	fscanf(inStock, "%[^,],", buffer);
-	fscanf(inStock, "%[^,],", buffer);
+	fscanf(inStock, "%[^\n]",buffer);
 
 	ClientProf temp = createCli(infile);	
 	Stock tempStock = createStock(inStock);
 
-	ListType stockList = create(sizeof(double) + 6, compareStock);
+	ListType stockList = create(12 + sizeof(char) * 6, compareStock);
 	ListType cliList = create(24, compareID);
 	
 	while (!feof(inStock)) {
 		printf("STILL STOCKING\n");	
 		push(stockList, tempStock);
 		tempStock = createStock(inStock);
-		//toStringCli(temp);
 	}
+
 	printl(stockList, printStock);
 	while (!feof(infile)) {
 		printf("STILL READING\n");
