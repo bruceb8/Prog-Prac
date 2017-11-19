@@ -76,11 +76,13 @@ void push(ListType listptr, void *item) {
       listptr->capacity += 100;
       listptr->data = temp;
      }
-   }
+	  
+	}
    if (listptr->size < listptr->capacity) {
      memcpy(listptr->data + (listptr->size) * (listptr->elementSize), item, (listptr->elementSize));
      listptr->size++;
    }
+	
 }
 
 int is_full(ListType listptr) {
@@ -98,6 +100,7 @@ int is_full(ListType listptr) {
 void* getEl(ListType listptr, int i) {
 	return listptr->data + i * (listptr->elementSize);
 }
+
 void delete(ListType listptr, void *item) {
 
 }
