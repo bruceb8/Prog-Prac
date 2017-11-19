@@ -44,61 +44,6 @@ ClientProf createCli(FILE* ptrF) {
 		
 		cProf->email[temp] = '\0'; 
 	
-		/*while(temp != '\n'){
-		
-			(cProf->id)[space] = temp;
-			temp = fgetc(ptrF);		
-			space++;
-		
-		}
-		(cProf->id)[space+1] = '\0';
-		temp = fgetc(ptrF);
-		space = 0;
-	
-		while(temp != '\n'){
-		
-			tempName[space] = temp;
-			temp = fgetc(ptrF);		
-			space++;
-		
-		}
-		cProf->nameSize = space;
-		tempName[space+1] = '\0';
-		temp = fgetc(ptrF);
-		space = 0;
-	
-		while(temp != '\n'){
-		
-			(cProf->phone)[space] = temp;
-			temp = fgetc(ptrF);		
-			space++;
-		
-		}	
-		
-		(cProf->phone)[space+1] = '\0';
-		temp = fgetc(ptrF);
-		space = 0;
-	
-		while(temp != '\n'){
-		
-			tempEmail[space] = temp;
-			temp = fgetc(ptrF);		
-			space++;
-		
-		
-		}
-	
-		tempEmail[space+1] = '\0';
-		cProf->emailSize = space;
-
-		//cProf->name = realloc(tempName , sizeof(char) * (strlen(tempName) + 1));
-		cProf->name = calloc(100, sizeof(char));
-		strcpy(cProf->name, tempName);	
-		//cProf->email = realloc(tempEmail, sizeof(char) * (strlen(tempEmail) + 1));
-		cProf->email = calloc(100, sizeof(char));
-		strcpy(cProf->email, tempEmail);	
-		free(tempName);
-		free(tempEmail);*/
 	}
 	free(tempStr);
 	return cProf;
@@ -109,7 +54,7 @@ void destroyCli(ClientProf cProf){
 	free(cProf->name);
 	free(cProf->phone);
 	free(cProf->email);
-	free(cProf);
+	//free(cProf);
 }
 
 char* getID(ClientProf cProf) {
@@ -149,18 +94,19 @@ void setEmail(ClientProf cProf, char* newEmail){
 	strcpy(cProf->email, newEmail);
 }
 
-void toStringCli (void* cProf) {
+char* toStringCli (void* cProf) {
 	
 	char* tempID = getID(cProf);
 	char* tempName = getName(cProf);
 	char* tempPhone = getPhone(cProf);
 	char* tempEmail = getEmail(cProf);
-    printf("%s,%s,,%s,%s\n", tempID, tempName, tempPhone, tempEmail);
+	char* buffer = calloc(400, sizeof(char));
+    sprintf(buffer, "%s,%s,,%s,%s\n,", tempID, tempName, tempPhone, tempEmail);
 	free(tempID);
 	free(tempName);
 	free(tempPhone);
 	free(tempEmail);
-	//return tempStr;
+	return buffer;
 }	
 
 

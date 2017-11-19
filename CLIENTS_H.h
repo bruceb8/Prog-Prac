@@ -13,6 +13,6 @@ void setID(ClientProf cProf, char* id);
 void setName(ClientProf cProf, char* newName);
 void setPhone(ClientProf cProf, char* newPhone);
 void setEmail(ClientProf cProf, char* newEmail);
-void toStringCli(void* cProf);
+char* toStringCli(void* cProf);
 #endif
 
