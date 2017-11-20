@@ -102,5 +102,5 @@ void* getEl(ListType listptr, int i) {
 }
 
 void delete(ListType listptr, void *item) {
-
+	
 }

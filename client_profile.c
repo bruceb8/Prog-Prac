@@ -15,6 +15,7 @@ ClientProf createCli(FILE* ptrF) {
 	//use getchar or something to snag letters until a new line
 	//then store it in the appropriate field.  Do this 4 times.
 	ClientProf cProf = malloc(sizeof(struct client_prof));
+	
 	char* tempStr = calloc(100, sizeof(char));
 	cProf->id = calloc(100, sizeof(char));
 	cProf->name= calloc(100, sizeof(char));
@@ -23,7 +24,7 @@ ClientProf createCli(FILE* ptrF) {
 	cProf->email = calloc(100, sizeof(char));	
 //char* tempEmail = calloc(100, sizeof(char));
 	fgets(tempStr,100,ptrF);
-	if(cProf != NULL && cProf->id != NULL && cProf->name != NULL && cProf->phone != NULL && cProf->email !=NULL && !feof(ptrF)) {
+	if(cProf != NULL && cProf->id != NULL && cProf->name != NULL && cProf->phone != NULL && cProf->email !=NULL && !feof(ptrF) && tempStr != NULL) {
 		strcpy(cProf->id,tempStr );
 		int temp = strlen(cProf->id) - 2;
 		
@@ -58,27 +59,23 @@ void destroyCli(ClientProf cProf){
 }
 
 char* getID(ClientProf cProf) {
-	char* temp = calloc(100, sizeof(char));
-	strcpy(temp, cProf->id);
-	return temp;
+	
+	return cProf->id;
 }
 
 char* getName(ClientProf cProf) {
-	char* temp = calloc(strlen(cProf->name) + 1, sizeof(char));
-	strcpy(temp, cProf->name);
-	return temp;
+	
+	return cProf->name;
 }
 
 char* getPhone(ClientProf cProf) {
-	char* temp = calloc(20 , sizeof(char));
-	strcpy(temp, cProf->phone);
-	return temp;
+	
+	return cProf->phone;
 }
 
 char* getEmail(ClientProf cProf) {
-	char* temp = calloc(strlen(cProf->email)  + 1, sizeof(char));
-	strcpy(temp, cProf->email);
-	return temp;
+	
+	return cProf->email;
 }
 void setID(ClientProf cProf, char* newID){
 	strcpy(cProf->id, newID);
@@ -102,10 +99,6 @@ char* toStringCli (void* cProf) {
 	char* tempEmail = getEmail(cProf);
 	char* buffer = calloc(400, sizeof(char));
     sprintf(buffer, "%s,%s,,%s,%s\n,", tempID, tempName, tempPhone, tempEmail);
-	free(tempID);
-	free(tempName);
-	free(tempPhone);
-	free(tempEmail);
 	return buffer;
 }	
 

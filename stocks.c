@@ -30,8 +30,8 @@ char* getStockSymbol(Stock theStock) {
 }
 
 double getStockPrice(Stock theStock) {
-	double thePrice = theStock->price;
-    return thePrice;
+	
+    return theStock->price;
 }
 void setStockSymbol(Stock theStock, char theNewString[]) {
     strcpy(theStock->symbol, theNewString);
@@ -52,11 +52,10 @@ void clearValues(Stock theStock) {
 	//theStock = NULL;
 }
 Stock createStock(FILE* theFilePointer) {
-    Stock stockPointer;
-    stockPointer = (Stock)malloc(sizeof(double) + 10);
+    Stock stockPointer = malloc(sizeof(struct stock_tag));
     if (stockPointer != NULL) {
         fscanf(theFilePointer, " %[^ ,] ,%lf", stockPointer->symbol, &stockPointer->price);
-		stockPointer->symbol[strlen(stockPointer->symbol)] = '\0';
+		//stockPointer->symbol[strlen(stockPointer->symbol)] = '\0';
     }
 	
     return stockPointer;
